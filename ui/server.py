@@ -22,8 +22,17 @@ from pydantic import BaseModel
 import logging
 
 from sd_internal import Request, Response
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 model_loaded = False
 model_is_loading = False
